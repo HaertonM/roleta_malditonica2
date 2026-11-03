@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Roleta</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <main>
+    <section id="view-home">
+      <header class="topbar">
+        <button class="ghost small" id="menu-open" aria-label="Menu">☰</button>
+        <h1 class="grow">Minhas roletas</h1>
+        <button class="small" id="new-roll-open">+ Nova</button>
+      </header>
+      <form id="new-roll-form" class="card hidden">
+        <label for="roll-name">Nome da roleta</label>
+        <input id="roll-name" placeholder="Ex.: Séries da noite" required>
+        <label for="roll-cat">Categoria</label>
+        <select id="roll-cat"><option>Série</option><option>Filme</option></select>
+        <div class="row mt">
+          <button class="grow">Criar</button>
+          <button type="button" class="ghost" id="new-roll-cancel">Cancelar</button>
+        </div>
+      </form>
+      <div id="rolls" class="mt"></div>
+    </section>
+
+    <section id="view-roll" class="hidden">
+      <header class="row">
+        <button class="ghost" id="roll-back" aria-label="Voltar">←</button>
+        <h1 id="roll-title" class="grow"></h1>
+        <button class="ghost" id="items-open">Itens</button>
+        <button class="ghost" id="settings-open" aria-label="Configurações">⚙</button>
+      </header>
+      <div class="wheel"><div class="pointer"></div><canvas id="wheel"></canvas></div>
+      <button id="spin" class="full">Girar</button>
+    </section>
+
+    <section id="view-items" class="hidden">
+      <header class="row">
+        <button class="ghost" id="items-back" aria-label="Voltar">←</button>
+        <h1 id="items-title" class="grow"></h1>
+      </header>
+      <button id="add-open" class="full mt">+ Adicionar item</button>
+      <h2 id="active-title">Na roleta</h2>
+      <div id="items-active"></div>
+      <h2>Concluídos</h2>
+      <div id="items-done"></div>
+    </section>
+
+    <section id="view-lists" class="hidden">
+      <header class="row">
+        <button class="ghost" id="lists-back" aria-label="Voltar">←</button>
+        <h1 id="list-title" class="grow"></h1>
+      </header>
+      <div id="list-body"></div>
+    </section>
+  </main>
+
+  <div id="sheet-overlay" class="overlay hidden"><div id="sheet" class="sheet"></div></div>
+
+  <div id="add-overlay" class="overlay hidden">
+    <form id="add-form" class="sheet">
+      <div class="row">
+        <h1 class="title grow">Novo item</h1>
+        <button type="button" class="icon" id="add-close" aria-label="Fechar">×</button>
+      </div>
+      <label for="item-name">Nome</label>
+      <input id="item-name" required>
+      <label for="item-platform">Plataforma</label>
+      <input id="item-platform" list="platforms" placeholder="Netflix, Prime Video…">
+      <datalist id="platforms">
+        <option>Netflix</option><option>Prime Video</option><option>Disney+</option>
+        <option>Max</option><option>Apple TV+</option><option>Globoplay</option>
+      </datalist>
+      <div id="season-field">
+        <label for="item-seasons">Episódios por temporada (separe por vírgula)</label>
+        <input id="item-seasons" placeholder="10, 8, 12">
+      </div>
+      <label for="item-cover">Capa</label>
+      <input id="item-cover" type="file" accept="image/*">
+      <button class="full mt">Adicionar</button>
+      <p id="add-msg" class="muted"></p>
+      <button type="button" class="ghost full" id="add-done">Concluir</button>
+    </form>
+  </div>
+</body>
+</html>
